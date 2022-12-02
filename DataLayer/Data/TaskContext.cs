@@ -29,7 +29,7 @@ namespace DataLayer
         public virtual DbSet<Entities.Task> Task { get; set; }
         public virtual DbSet<Team> Team { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<UserAuthentication> UserAuthentications { get; set; }
+        public virtual DbSet<UserAuthentication> UserAuthentication { get; set; }
 
     }
 }

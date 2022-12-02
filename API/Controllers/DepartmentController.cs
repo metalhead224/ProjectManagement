@@ -36,13 +36,13 @@ namespace API.Controllers
 
             try
             {
-                var data = await _context.GetAll();
-                return Ok(data);
+                var dept = await _context.GetAll();
+                return Ok(dept);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                return BadRequest(ex);
+                throw new Exception("Not Found!");
             }
            
         }

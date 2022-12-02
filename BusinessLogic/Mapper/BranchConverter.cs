@@ -77,7 +77,7 @@ namespace BusinessLogic.Mapper
 			}
 		}
 
-		public List<BranchVM> Convert(List<Branch> entities)
+		public static List<BranchVM> Convert(List<Branch> entities)
 		{
 			try
 			{

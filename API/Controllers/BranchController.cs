@@ -30,5 +30,36 @@ namespace API.Controllers
                 throw;
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> BranchList()
+        {
+            try
+            {
+                var branch = await _context.GetAll();
+                return Ok(branch);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
+        }
+
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> Branch(int Id)
+        {
+            try
+            {
+                var branch = await _context.GetById(Id);
+                return Ok(branch);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

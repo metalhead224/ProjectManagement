@@ -10,5 +10,7 @@ namespace BusinessLogic.Interface
     public interface IBranchServices
     {
         Task<bool> Add(BranchVM branch);
+        Task<List<BranchVM>> GetAll();
+        Task<BranchVM> GetById(int Id);
     }
 }

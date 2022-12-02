@@ -20,7 +20,7 @@ builder.Services.AddScoped<IDepartmentServices, DepartmentServices>();
 builder.Services.AddScoped<IUsersServices, UsersServices>();
 builder.Services.AddScoped<IBranchServices, BranchServices>();
 builder.Services.AddScoped<IRolesServices, RolesServices>();
-
+builder.Services.AddScoped<IUserAuthenticationServices, UserAuthenticationServices>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

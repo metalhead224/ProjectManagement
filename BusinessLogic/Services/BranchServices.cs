@@ -2,6 +2,7 @@
 using BusinessLogic.Mapper;
 using BusinessLogic.ViewModel;
 using DataLayer;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,36 @@ namespace BusinessLogic.Services
 			{
 
 				throw ex;
+			}
+        }
+
+
+        public async Task<List<BranchVM>> GetAll()
+        {
+			try
+			{
+				var data =await _context.Branch.ToListAsync();
+				return BranchConverter.Convert(data);
+
+			}
+			catch (Exception)
+			{
+
+				throw new Exception("Not Found!");
+			}
+        }
+
+        public async Task<BranchVM> GetById(int Id)
+        {
+			try
+			{
+                var data = await _context.Branch.FindAsync(Id);
+                return BranchConverter.Convert(data);
+            }
+			catch (Exception)
+			{
+
+				throw new Exception("Not Found");
 			}
         }
     }
