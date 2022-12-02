@@ -8,25 +8,28 @@ using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
 using DataLayer.Entities;
 
-namespace DataLayer.Data
+namespace DataLayer
 {
-    public class TaskContext : DbContext
+    public  class TaskContext : DbContext
     {
-        public TaskContext()
+        public TaskContext(DbContextOptions<TaskContext> options) : base (options)
         {
-            //var objectAdapter = (IObjectContextAdapter)this;
-            //var objContext = objectAdapter.ObjectContext;
-            //objContext.CommandTimeout = 15 * 60;
 
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            object value = optionsBuilder.UseSqlServer(
-            @"Server=DESKTOP-HV1SLKB;Database=Task_Management_Live;Trusted_Connection=True; UID = sa; PWD = evergreensuman99");
-            //DATA SOURCE = DESKTOP - HV1SLKB; DATABASE = Task_Management_Live; UID = sa; PWD = evergreensuman99
-        }
-
 
         public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<Branch> Branch { get; set; }
+        public virtual DbSet<Client> Client { get; set; }
+        public virtual DbSet<Department> Department { get; set; }
+        public virtual DbSet<Logs> Logs { get; set; }
+        public virtual DbSet<Menu> Menu { get; set; }
+        public virtual DbSet<Operation> Operation { get; set; }
+        public virtual DbSet<Project> Project { get; set; }
+        public virtual DbSet<RoleMenu> RoleMenu { get; set; }
+        public virtual DbSet<Entities.Task> Task { get; set; }
+        public virtual DbSet<Team> Team { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<UserAuthentication> UserAuthentications { get; set; }
+
     }
 }

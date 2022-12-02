@@ -1,4 +1,5 @@
-﻿using DataLayer.Data;
+﻿using DataLayer;
+using DataLayer.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -12,7 +13,15 @@ namespace API.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpPost]
+
+        public async Task<ActionResult<List<Branch>>> AddBranch(Branch branch)
+        {
+            _context.Branch.Add(branch);
+            await _context.SaveChangesAsync();
+            return Ok(await _context.Branch.ToListAsync());
+
+        }
 
     }
 }
