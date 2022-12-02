@@ -1,23 +1,34 @@
-﻿using DataLayer.Entities;
+﻿using BusinessLogic.Interface;
+using BusinessLogic.ViewModel;
+using DataLayer.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
     public class RolesController : BaseApiController
     {
-        private TaskContext _context;
+        private IRolesServices _context;
 
-        public RolesController(TaskContext context)
+        public RolesController(IRolesServices context)
         {
             _context = context;
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Roles>>> AddRole(Roles role)
+        public async Task<IActionResult> Add(RolesVM role)
         {
-            _context.Roles.Add(role);
-            await _context.SaveChangesAsync();
-            return Ok(await _context.Roles.ToListAsync());
+            try
+            {
+                if (role == null) return null;
+
+                await _context.Add(role);
+                return Ok("Added role successfully!");
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex);
+            }
         }
     }
 }

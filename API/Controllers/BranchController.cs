@@ -1,27 +1,34 @@
-﻿using DataLayer;
-using DataLayer.Entities;
+﻿using BusinessLogic.Interface;
+using BusinessLogic.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
     public class BranchController : BaseApiController
     {
-        private TaskContext _context;
+        private IBranchServices _context;
 
-        public BranchController(TaskContext context)
+        public BranchController(IBranchServices context)
         {
             _context = context;
         }
 
         [HttpPost]
-
-        public async Task<ActionResult<List<Branch>>> AddBranch(Branch branch)
+        public async Task<IActionResult>  Add(BranchVM branch)
         {
-            _context.Branch.Add(branch);
-            await _context.SaveChangesAsync();
-            return Ok(await _context.Branch.ToListAsync());
+            try
+            {
+                if (branch == null) return null;
 
+                await _context.Add(branch);
+                return Ok("Added branch successfully");
+                
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
-
     }
 }

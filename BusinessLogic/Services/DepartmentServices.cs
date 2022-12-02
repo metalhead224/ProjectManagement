@@ -20,11 +20,11 @@ namespace Services
             {
                 _context = context;
             }
-            public async Task<bool> Add(DepartmentVM depart)
+            public async Task<bool> Add(DepartmentVM dept)
             {
                 try
                 {
-                    var entity = DepartmentConverter.Convert(depart);                       
+                    var entity = DepartmentConverter.Convert(dept);                       
                     await _context.AddAsync(entity);
                     await _context.SaveChangesAsync();
                     return true;

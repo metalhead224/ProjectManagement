@@ -1,6 +1,7 @@
 global using DataLayer;
 global using Microsoft.EntityFrameworkCore;
 using BusinessLogic.Interface;
+using BusinessLogic.Services;
 using Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,10 @@ builder.Services.AddDbContext<TaskContext>(opt =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IDepartmentServices, DepartmentServices>();
+builder.Services.AddScoped<IUsersServices, UsersServices>();
+builder.Services.AddScoped<IBranchServices, BranchServices>();
+builder.Services.AddScoped<IRolesServices, RolesServices>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

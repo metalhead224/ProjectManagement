@@ -1,23 +1,33 @@
-﻿using DataLayer.Entities;
+﻿using BusinessLogic.Interface;
+using BusinessLogic.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
     public class UsersController : BaseApiController
     {
-        private TaskContext _context;
+        private IUsersServices _context;
 
-        public UsersController(TaskContext context)
+        public UsersController(IUsersServices context)
         {
             _context = context;
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Users>>> AddUser(Users user)
+        public async Task<IActionResult> Add(UsersVM user)
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-            return Ok(await _context.Users.ToListAsync());
+            try
+            {
+                if (user == null) return null;
+
+                await _context.Add(user);
+                return Ok("Added user successfully!");
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }   
         }
     }
 }

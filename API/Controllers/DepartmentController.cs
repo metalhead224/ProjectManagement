@@ -14,12 +14,14 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(DepartmentVM data)
+        public async Task<IActionResult> Add(DepartmentVM dept)
         {
             try
             {
-                await _context.Add(data);
-                return Ok("Successfully added data!");
+                if (dept == null) return null;
+
+                await _context.Add(dept);
+                return Ok("Successfully added department!");
             }
             catch (Exception ex)
             {
