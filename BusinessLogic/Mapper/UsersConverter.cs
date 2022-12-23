@@ -58,6 +58,7 @@ namespace BusinessLogic.Mapper
 				{
 					Id= entity.Id,
 					DepartmentId= entity.DepartmentId,
+					RoleId= entity.RoleId,
 					FirstName= entity.FirstName,
 					MiddleName= entity.MiddleName,
 					LastName= entity.LastName,

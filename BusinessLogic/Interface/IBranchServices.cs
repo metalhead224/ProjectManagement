@@ -12,5 +12,6 @@ namespace BusinessLogic.Interface
         Task<bool> Add(BranchVM branch);
         Task<List<BranchVM>> GetAll();
         Task<BranchVM> GetById(int Id);
+        Task<bool> Delete(int Id);
     }
 }

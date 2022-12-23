@@ -1,6 +1,7 @@
 ﻿using BusinessLogic.Interface;
 using BusinessLogic.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography;
 
 namespace API.Controllers
 {
@@ -14,7 +15,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult>  Add(BranchVM branch)
+        public async Task<IActionResult> Add(BranchVM branch)
         {
             try
             {
@@ -22,7 +23,7 @@ namespace API.Controllers
 
                 await _context.Add(branch);
                 return Ok("Added branch successfully");
-                
+
             }
             catch (Exception)
             {
@@ -44,7 +45,7 @@ namespace API.Controllers
 
                 throw ex;
             }
-            
+
         }
 
         [HttpGet("{Id}")]
@@ -54,6 +55,22 @@ namespace API.Controllers
             {
                 var branch = await _context.GetById(Id);
                 return Ok(branch);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> Delete(int Id)
+        {
+            try
+            {
+                await _context.Delete(Id); 
+                return Ok();
             }
             catch (Exception ex)
             {

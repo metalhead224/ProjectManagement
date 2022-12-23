@@ -3,15 +3,10 @@ using BusinessLogic.Mapper;
 using BusinessLogic.ViewModel;
 using DataLayer;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogic.Services
 {
-    public class BranchServices : IBranchServices
+	public class BranchServices : IBranchServices
     {
         private TaskContext _context;
 
@@ -35,6 +30,29 @@ namespace BusinessLogic.Services
 			}
         }
 
+        public async Task<bool> Delete(int Id)
+        {
+			try
+			{
+				var entity = await _context.Branch.FindAsync(Id);
+
+				if (entity == null)
+				{ 
+					return false;
+				} 
+				else
+				{
+					_context.Branch.Remove(entity);
+					await _context.SaveChangesAsync();
+					return true;
+				}
+			}
+			catch (Exception ex)
+			{
+
+				throw ex;
+			}
+        }
 
         public async Task<List<BranchVM>> GetAll()
         {
@@ -44,10 +62,9 @@ namespace BusinessLogic.Services
 				return BranchConverter.Convert(data);
 
 			}
-			catch (Exception)
-			{
-
-				throw new Exception("Not Found!");
+			catch (Exception ex) 
+			{ 
+				throw ex; 
 			}
         }
 
@@ -58,10 +75,10 @@ namespace BusinessLogic.Services
                 var data = await _context.Branch.FindAsync(Id);
                 return BranchConverter.Convert(data);
             }
-			catch (Exception)
+			catch (Exception ex)
 			{
 
-				throw new Exception("Not Found");
+				throw ex;
 			}
         }
     }

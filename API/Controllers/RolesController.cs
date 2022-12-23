@@ -27,7 +27,7 @@ namespace API.Controllers
             catch (Exception ex)
             {
 
-                return BadRequest(ex);
+                throw ex;
             }
         }
     }

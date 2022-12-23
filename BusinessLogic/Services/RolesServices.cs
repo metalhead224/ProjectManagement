@@ -2,6 +2,7 @@
 using BusinessLogic.Mapper;
 using BusinessLogic.ViewModel;
 using DataLayer;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,9 +36,18 @@ namespace BusinessLogic.Services
             }
         }
 
-        public Task<List<RolesVM>> GetAll()
+        public async Task<List<RolesVM>> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var data = await _context.Roles.ToListAsync();
+                return RolesConverter.Convert(data);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

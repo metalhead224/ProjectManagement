@@ -30,10 +30,10 @@ namespace DataLayer.Entities
 
         public string? OfficeEmail { get; set; }
 
-        [Required]
+        
         public int CreatedBy { get; set; }
 
-        [Required]
+        
         public DateTime CreatedDate { get; set; }
         public int? UpdatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }

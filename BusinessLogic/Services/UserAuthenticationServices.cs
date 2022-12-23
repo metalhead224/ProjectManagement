@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,10 +29,10 @@ namespace BusinessLogic.Services
                 await _context.SaveChangesAsync();
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw new Exception("Something went wrong!");
+                throw ex;
             }
         }
 
@@ -46,5 +47,19 @@ namespace BusinessLogic.Services
             var data = await _context.UserAuthentication.FindAsync(Id);
             return UserAuthenticationConverter.Convert(data);
         }
+
+        public string GetHashed(string password)
+        {
+
+            HMACSHA256 hash = new HMACSHA256();
+
+
+
+            var key = Convert.FromHexString(password);
+
+            return hash.ComputeHash(key).ToString();
+
+        }
     }
 }
+

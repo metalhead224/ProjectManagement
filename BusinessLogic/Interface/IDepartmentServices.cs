@@ -11,6 +11,6 @@ namespace BusinessLogic.Interface
     {
         Task<bool> Add(DepartmentVM dept);
         Task<List<DepartmentVM>> GetAll();
-        Task<bool> Delete(int id);
+        Task<bool> Delete(int Id);
     }
 }

@@ -21,8 +21,6 @@ namespace BusinessLogic.ViewModel
 
         [Required]
         public string ContactNumber1 { get; set; }
-
-        [Required]
         public string? ContactNumber2 { get; set; }
 
         [Required]
@@ -35,8 +33,8 @@ namespace BusinessLogic.ViewModel
         public string ShortName { get; set; }
         public int ContactPerson { get; set; }
         public bool IsActive { get; set; }
-        public int CreatedBy { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public int? CreatedBy { get; set; }
+        public DateTime? CreatedDate { get; set; }
         public int? UpdatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
     }

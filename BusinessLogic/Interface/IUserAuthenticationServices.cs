@@ -12,5 +12,6 @@ namespace BusinessLogic.Interface
         Task<bool> Add(UserAuthenticationVM UserAuth);
         Task<List<UserAuthenticationVM>> GetAll();
         Task<UserAuthenticationVM> GetById(int Id);
+        string GetHashed(string password);
     }
 }

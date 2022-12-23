@@ -46,5 +46,19 @@ namespace API.Controllers
             }
            
         }
+
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> Delete(int Id)
+        {
+            try
+            {
+                await _context.Delete(Id);
+                return Ok();
+            }
+            catch (Exception ex) 
+            {
+                throw ex;
+            }
+        }
     }
 }

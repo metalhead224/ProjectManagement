@@ -35,9 +35,28 @@ namespace Services
                 }
             }
 
-            public Task<bool> Delete(int id)
+            public async Task<bool> Delete(int Id)
             {
-                throw new NotImplementedException();
+            try
+            {
+                var entity = await _context.Department.FindAsync(Id);
+
+                if (entity == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    _context.Department.Remove(entity);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
             }
 
             public async Task<List<DepartmentVM>> GetAll()
