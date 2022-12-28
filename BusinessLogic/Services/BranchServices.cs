@@ -2,6 +2,7 @@
 using BusinessLogic.Mapper;
 using BusinessLogic.ViewModel;
 using DataLayer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace BusinessLogic.Services
@@ -80,6 +81,38 @@ namespace BusinessLogic.Services
 
 				throw ex;
 			}
+        }
+
+        public async Task<BranchVM> UpdateBranch(BranchVM branch)
+        {
+			try
+			{
+				var data = await _context.Branch.FindAsync(branch.Id);
+
+				if (data == null)
+				{
+					return null;
+				}
+				data.Name= branch.Name;
+				data.Address= branch.Address;
+				data.ShortName= branch.ShortName;
+				data.ContactNumber1 = branch.ContactNumber1;
+				data.ContactNumber2= branch.ContactNumber2;
+				data.Code = branch.Code;
+				data.Email = branch.Email;
+				data.ContactPerson = branch.ContactPerson;
+				data.IsHeadOffice = branch.IsHeadOffice;
+				data.IsRegionalHead = branch.IsRegionalHead;
+
+				_context.Update(data);
+				await _context.SaveChangesAsync();
+				return BranchConverter.Convert(data);
+				
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+            }
         }
     }
 }

@@ -78,5 +78,21 @@ namespace API.Controllers
                 throw ex;
             }
         }
+
+        [HttpPut]
+
+        public async Task<IActionResult> UpdateBranch(BranchVM branch)
+        {
+            try
+            {
+                await _context.UpdateBranch(branch);
+                return Ok("branch added successfully!");
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

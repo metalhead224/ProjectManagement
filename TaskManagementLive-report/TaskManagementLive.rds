@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="TaskManagementLive">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=DESKTOP-HV1SLKB;Initial Catalog=Task_Management_Live</ConnectString>
+    <Prompt>Specify a user name and password for data source DataSource1:</Prompt>
+  </ConnectionProperties>
+  <DataSourceID>44ce5d37-f97d-4dd8-a891-5538c3f872ec</DataSourceID>
+</RptDataSource>
